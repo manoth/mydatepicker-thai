@@ -40,7 +40,8 @@
                     <div style="float:right">
                         <div class="headerbtncell"><button type="button" [attr.aria-label]="opts.ariaLabelPrevYear" class="headerbtn mydpicon icon-mydpleft" (click)="onPrevYear()" [disabled]="prevYearDisabled" [ngClass]="{'headerbtnenabled': !prevYearDisabled, 'headerbtndisabled': prevYearDisabled}"></button></div>
                         <div class="headeryeartxt">
-                            <button class="headerlabelbtn" type="button" [ngClass]="{'yearlabel': opts.yearSelector}" (click)="opts.yearSelector&&onSelectYearClicked($event)" tabindex="{{opts.yearSelector?'0':'-1'}}">{{visibleMonth.year}}</button>
+                            <button *ngIf="locale !== 'th'" class="headerlabelbtn" type="button" [ngClass]="{'yearlabel': opts.yearSelector}" (click)="opts.yearSelector&&onSelectYearClicked($event)" tabindex="{{opts.yearSelector?'0':'-1'}}">{{visibleMonth.year}}</button>
+                            <button *ngIf="locale === 'th'" class="headerlabelbtn" type="button" [ngClass]="{'yearlabel': opts.yearSelector}" (click)="opts.yearSelector&&onSelectYearClicked($event)" tabindex="{{opts.yearSelector?'0':'-1'}}">{{visibleMonth.year + 543}}</button>
                         </div>
                         <div class="headerbtncell"><button type="button" [attr.aria-label]="opts.ariaLabelNextYear" class="headerbtn mydpicon icon-mydpright" (click)="onNextYear()" [disabled]="nextYearDisabled" [ngClass]="{'headerbtnenabled': !nextYearDisabled, 'headerbtndisabled': nextYearDisabled}"></button></div>
                     </div>
@@ -79,7 +80,8 @@
                 </tr>
                 <tr *ngFor="let yr of years">
                     <td class="yearcell tablesingleyear" [ngClass]="{'selectedyear': y.selected, 'disabled': y.disabled}" *ngFor="let y of yr" (click)="!y.disabled&&onYearCellClicked(y);$event.stopPropagation()" (keydown)="onYearCellKeyDown($event, y)" tabindex="0">
-                        <div class="yearvalue" [ngClass]="{'markcurryear':y.currYear&&opts.markCurrentYear}">{{y.year}}</div>
+                        <div *ngIf="locale !== 'th'" class="yearvalue" [ngClass]="{'markcurryear':y.currYear&&opts.markCurrentYear}">{{y.year}}</div>
+                        <div *ngIf="locale === 'th'" class="yearvalue" [ngClass]="{'markcurryear':y.currYear&&opts.markCurrentYear}">{{y.year + 543}}</div>
                     </td>
                 </tr>
                 <tr>
