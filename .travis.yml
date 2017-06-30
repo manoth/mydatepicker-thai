@@ -6,10 +6,10 @@ before_install:
 - "sh -e /etc/init.d/xvfb start"
 - sleep 3
 install:
-- npm install
+- yarn install
 script:
 - gulp all
-- npm test
+- yarn test
 after_success:
 - ./node_modules/.bin/codecov  -f test-output/coverage/json/coverage-final.json
 sudo: required
