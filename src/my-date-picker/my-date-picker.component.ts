@@ -637,7 +637,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
 
     formatDate(val: any): string {
         // Returns formatted date string, if mmm is part of dateFormat returns month as a string
-        let formatted: string = this.opts.dateFormat.replace(YYYY, val.year).replace(DD, this.preZero(val.day));
+        let formatted: string = this.opts.dateFormat.replace(YYYY, (this.locale == 'th') ? (val.year + 543) : val.year).replace(DD, this.preZero(val.day));
         return this.opts.dateFormat.indexOf(MMM) !== -1 ? formatted.replace(MMM, this.monthText(val.month)) : formatted.replace(MM, this.preZero(val.month));
     }
 
